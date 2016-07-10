@@ -77,8 +77,6 @@ public class Persona implements  Serializable{
     @JoinColumn(name = "id_cuenta")
     // obtener los metodos set y get
     private Cuenta cuenta;
-
-    
     
     
     //CREANADO METODOS SET Y GET

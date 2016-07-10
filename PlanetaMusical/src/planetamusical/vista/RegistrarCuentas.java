@@ -3,6 +3,7 @@ package planetamusical.vista;
 import javax.swing.JOptionPane;
 import planetamusical.Util.JPAUtil;
 import planetamusical.controlador.CuentaJpaControl;
+import planetamusical.controlador.PersonaJpaControl;
 import planetamusical.modelo.Cuenta;
 import planetamusical.modelo.Cuenta;
 import planetamusical.modelo.Persona;

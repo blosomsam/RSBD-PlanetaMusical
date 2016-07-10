@@ -16,9 +16,9 @@ public class PlanetaMusical {
     public static void main(String[] args) {
         
         
-        //AUTENTIFICACIÓN DE USUARIOS
-        Autentificacion au = new Autentificacion(null,true);
-        au.setVisible(true);
+//        //AUTENTIFICACIÓN DE USUARIOS
+//        Autentificacion au = new Autentificacion(null,true);
+//        au.setVisible(true);
         
         
 //CREAR UN USUARIO ADMINISTRADOR CON CONTRASEÑA

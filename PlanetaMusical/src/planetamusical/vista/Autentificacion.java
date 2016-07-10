@@ -174,7 +174,7 @@ public class Autentificacion extends javax.swing.JDialog {
     }//GEN-LAST:event_btnsalirActionPerformed
 
     private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
-        
+        ingresarPantalla();
     }//GEN-LAST:event_btnAccederActionPerformed
 
     /**
