@@ -5,17 +5,31 @@
  */
 package planetamusical.vista;
 
+import planetamusical.Util.JPAUtil;
+import planetamusical.controlador.CompraJpaControl;
+import planetamusical.modelo.Compra;
+
 /**
  *
  * @author sandrojc
  */
 public class RegistrarCompras extends javax.swing.JInternalFrame {
-
+Compra com;
+CompraJpaControl comjpa;
     /**
      * Creates new form RegistrarCompras_
      */
     public RegistrarCompras() {
         initComponents();
+    }
+    public Compra cargardatos() {
+        com= new Compra();
+        com.setDescripcionCompra(txtDescripcionCompra.getText());
+        com.setFechaCompra(FechaCompra.getDate());
+        com.setFechaIngresoCompra(FechaIngresoCompra.getDate());
+        com.setTotalProducto(Integer.parseInt(txtTotalProductos.getText()));
+        com.setValorTotal(Integer.valueOf(txtValorTotalProductos.getText()));
+        return com;
     }
 
     /**
@@ -33,11 +47,11 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
         FechaIngresoCompra = new org.jdesktop.swingx.JXDatePicker();
         FechaCompra = new org.jdesktop.swingx.JXDatePicker();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        txtDescripcionCompra = new javax.swing.JTextPane();
         txtTotalProductos = new javax.swing.JTextField();
         txtValorTotalProductos = new javax.swing.JTextField();
-        btnCrear = new javax.swing.JButton();
-        btnDarDeBaja = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -62,7 +76,7 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(txtDescripcionCompra);
 
         txtTotalProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,14 +84,19 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar-25x25.png"))); // NOI18N
-        btnCrear.setText("Guardar");
-
-        btnDarDeBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir-25x25.png"))); // NOI18N
-        btnDarDeBaja.setText("Salir ");
-        btnDarDeBaja.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guardar-25x25.png"))); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDarDeBajaActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir-25x25.png"))); // NOI18N
+        btnSalir.setText("Salir ");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -90,7 +109,7 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,9 +131,9 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
                             .addComponent(txtValorTotalProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTotalProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCrear)
+                        .addComponent(btnGuardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDarDeBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(9, 9, 9))
         );
         layout.setVerticalGroup(
@@ -143,8 +162,8 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDarDeBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
 
@@ -163,24 +182,31 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_txtTotalProductosActionPerformed
 
-    private void btnDarDeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarDeBajaActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
 
         this.setVisible(false);
-    }//GEN-LAST:event_btnDarDeBajaActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        comjpa = new CompraJpaControl(JPAUtil.getEntityManagerFactory());
+        com = cargardatos();
+        comjpa.crear(com);
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXDatePicker FechaCompra;
     private org.jdesktop.swingx.JXDatePicker FechaIngresoCompra;
-    private javax.swing.JButton btnCrear;
-    private javax.swing.JButton btnDarDeBaja;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane txtDescripcionCompra;
     private javax.swing.JTextField txtTotalProductos;
     private javax.swing.JTextField txtValorTotalProductos;
     // End of variables declaration//GEN-END:variables

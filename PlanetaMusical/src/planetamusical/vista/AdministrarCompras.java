@@ -5,17 +5,24 @@
  */
 package planetamusical.vista;
 
+import planetamusical.Util.JPAUtil;
+import planetamusical.controlador.CompraJpaControl;
+import planetamusical.modelo.Compra;
+
 /**
  *
  * @author sandrojc
  */
 public class AdministrarCompras extends javax.swing.JInternalFrame {
-
+    
+    CompraJpaControl c=new CompraJpaControl(JPAUtil.getEntityManagerFactory());
+    Compra compra;
     /**
      * Creates new form AdministrarCompras_
      */
     public AdministrarCompras() {
         initComponents();
+        //this.mostrarCompra();
     }
 
     /**
@@ -160,7 +167,7 @@ public class AdministrarCompras extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbxCriterioBusquedaActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-
+//  this.buscarCompra(this.cbxCriterioBusqueda.getSelectedItem().toString(),txtParametroBusqueda.getText());
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

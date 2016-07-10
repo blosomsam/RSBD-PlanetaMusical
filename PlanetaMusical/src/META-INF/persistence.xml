@@ -4,11 +4,17 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>planetamusical.modelo.Cuenta</class>
     <class>planetamusical.modelo.Persona</class>
+    <class>planetamusical.modelo.Cliente</class>
+    <class>planetamusical.modelo.Compra</class>
+    <class>planetamusical.modelo.DetalleVenta</class>
+    <class>planetamusical.modelo.Producto</class>
+    <class>planetamusical.modelo.Proveedor</class>
+    <class>planetamusical.modelo.Venta</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/PlanetaMusical?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="admin"/>
+      <property name="javax.persistence.jdbc.password" value="cuarto"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>

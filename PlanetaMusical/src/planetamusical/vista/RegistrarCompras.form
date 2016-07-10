@@ -24,7 +24,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="8" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="454" max="-2" attributes="0"/>
@@ -53,9 +53,9 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnCrear" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnDarDeBaja" min="-2" pref="107" max="-2" attributes="0"/>
+                      <Component id="btnSalir" min="-2" pref="107" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
@@ -94,8 +94,8 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnCrear" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="btnDarDeBaja" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="btnGuardar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="btnSalir" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
           </Group>
@@ -135,7 +135,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="jTextPane1">
+        <Component class="javax.swing.JTextPane" name="txtDescripcionCompra">
         </Component>
       </SubComponents>
     </Container>
@@ -146,15 +146,18 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtValorTotalProductos">
     </Component>
-    <Component class="javax.swing.JButton" name="btnCrear">
+    <Component class="javax.swing.JButton" name="btnGuardar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/guardar-25x25.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnDarDeBaja">
+    <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/salir-25x25.png"/>
@@ -162,7 +165,7 @@
         <Property name="text" type="java.lang.String" value="Salir "/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDarDeBajaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
