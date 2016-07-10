@@ -5,9 +5,10 @@ import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import planetamusical.modelo.Persona;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
-    
+    private Persona per;
     protected  void this_windowsOpened(WindowEvent e ){
         centrarVentana();
     }
@@ -310,4 +311,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuVentas;
     public static javax.swing.JDesktopPane principal;
     // End of variables declaration//GEN-END:variables
+
+    public Persona getPer() {
+        return per;
+    }
+
+    public void setPer(Persona per) {
+        this.per = per;
+    }
 }

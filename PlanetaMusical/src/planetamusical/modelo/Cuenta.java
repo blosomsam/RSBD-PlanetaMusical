@@ -4,35 +4,35 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-//Indicamos que es una entidad para JPA
 @Entity
-//Identificar como se va ha realcionar y crea la tabla en la base de datos
-@Table(name="Cuenta")
-//Mapear en un fichero de xml  de la clase en cuanquir fichero
+@Table(name = "Cuenta")
 @XmlRootElement
-
-//Consultar en SQL 
 @NamedQueries({
-   @NamedQuery(name = "Cuenta.buscarAll",
+    @NamedQuery(name = "cuenta.buscarAll",
             query = "SELECT o FROM Cuenta o"),
-   @NamedQuery(name = "Cuenta.buscarPorId",
-            query = "SELECT o FROM Cuenta o WHERE o.id_cuenta :id_cuenta"),
-   @NamedQuery(name = "Cuenta.buscarPorFechaCreacion",
-            query = "SELECT o FROM Cuenta o WHERE o.fechaCreacion :fechaCreacion")
+    @NamedQuery(name = "cuenta.buscarPorId",
+            query = "SELECT o FROM Cuenta o WHERE o.id_cuenta = :id_cuenta"),
+    @NamedQuery(name = "persona.buscarPorUsuario",
+            query = "SELECT o FROM Cuenta o WHERE o.nombreUsuario = :nombreUsuario"),
 })
+
 
 public class Cuenta implements  Serializable{
     @Id
     @Column(name ="id_cuenta")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long   id_cuenta;
     
     @Column(name = "nombreUsuario")
@@ -41,16 +41,20 @@ public class Cuenta implements  Serializable{
     @Column(name = "clave")
     private String clave;
     
-    @Temporal(TemporalType.TIMESTAMP)
+     @Temporal(TemporalType.TIMESTAMP)
     private Date   fechaCreacion;
     
-    @Temporal(TemporalType.TIMESTAMP)
+     @Temporal(TemporalType.TIMESTAMP)
     private Date   fechaModificacion;
     
     @Column(name = "estado")
     private String estado;
 
-    //Añadiendo métodos set y get
+    //REALACION UNO AUNO CON LA CLASE PERSONA 
+    @OneToOne(mappedBy = "cuenta")
+     private Persona persona;
+    
+    //CREANDO METODOS SET Y GET
     public long getId_cuenta() {
         return id_cuenta;
     }
@@ -97,5 +101,13 @@ public class Cuenta implements  Serializable{
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 }

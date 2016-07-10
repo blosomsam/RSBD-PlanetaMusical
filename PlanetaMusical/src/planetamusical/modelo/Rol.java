@@ -1,9 +1,13 @@
-package planetamusical;
+package planetamusical.modelo;
 
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -15,10 +19,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 
 //consultas en base de datos SQL
+@NamedQueries({
+    @NamedQuery(name = "Rol.buscarAll",
+            query = "SELECT o FROM Rol o"),
+    @NamedQuery(name = "Rol.buscarPorId",
+            query = "SELECT o FROM Rol o WHERE o.id_rol =:id_rol"),
+    @NamedQuery(name = "Rol.buscarPorNombres",
+            query = "SELECT o FROM Rol o WHERE o.nombresRol =:nombresRol")
+})
 
 public class Rol implements  Serializable{
     @Id
     @Column(name = "id_rol")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id_rol;
     
     @Column(name = "nombreRol")
