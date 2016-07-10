@@ -38,22 +38,28 @@
                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="FechaAsignacionCuenta" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                          <Component id="fechaCreacion" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Component id="cbxEstadoCuenta" alignment="0" max="32767" attributes="0"/>
-                              <Component id="FechaModificacionCuenta" alignment="0" pref="219" max="32767" attributes="0"/>
+                              <Component id="fechaModificacionCuenta" alignment="0" pref="219" max="32767" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txtAsignarClaveeUsuario" alignment="0" pref="219" max="32767" attributes="0"/>
+                              <Component id="txtAsignarClave" alignment="0" pref="219" max="32767" attributes="0"/>
                               <Component id="txtAsignarNombreUsuario" alignment="1" pref="219" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="cbxTipoRol" min="-2" pref="223" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,25 +73,30 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtAsignarClaveeUsuario" alignment="3" pref="34" max="32767" attributes="0"/>
+                  <Component id="txtAsignarClave" alignment="3" pref="40" max="32767" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="fechaCreacion" alignment="3" pref="40" max="32767" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="FechaAsignacionCuenta" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cbxEstadoCuenta" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="FechaModificacionCuenta" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="fechaModificacionCuenta" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cbxTipoRol" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnGuardar" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="btnSalir" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
@@ -119,10 +130,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Fecha asignaci&#xf3;n :"/>
+        <Property name="text" type="java.lang.String" value="Fecha creaci&#xf3;n :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="txtAsignarClaveeUsuario">
+    <Component class="javax.swing.JPasswordField" name="txtAsignarClave">
     </Component>
     <Component class="javax.swing.JComboBox" name="cbxEstadoCuenta">
       <Properties>
@@ -134,9 +145,9 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="org.jdesktop.swingx.JXDatePicker" name="FechaModificacionCuenta">
+    <Component class="org.jdesktop.swingx.JXDatePicker" name="fechaModificacionCuenta">
     </Component>
-    <Component class="org.jdesktop.swingx.JXDatePicker" name="FechaAsignacionCuenta">
+    <Component class="org.jdesktop.swingx.JXDatePicker" name="fechaCreacion">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -160,6 +171,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSalir">
       <Properties>
@@ -171,6 +185,27 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel10">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tipo rol :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbxTipoRol">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Administrador"/>
+            <StringItem index="1" value="Usuario"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxTipoRolActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

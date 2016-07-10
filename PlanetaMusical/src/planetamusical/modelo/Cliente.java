@@ -19,26 +19,26 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cliente.buscarAll",
             query = "SELECT o FROM Cliente o"),
     @NamedQuery(name = "Cliente.buscarPorId",
-            query = "SELECT o FROM Cliente o WHERE o.id_persona :id_persona"),
+            query = "SELECT o FROM Cliente o WHERE o.id_persona = :id_persona"),
     @NamedQuery(name = "Cliente.buscarPorNombres",
-            query = "SELECT o FROM Cliente o WHERE o.nombres :nombres"),
+            query = "SELECT o FROM Cliente o WHERE o.nombres = :nombres"),
     @NamedQuery(name = "Cliente.buscarPorApellidos",
-            query = "SELECT o FROM Cliente o WHERE o.apellidos :apellidos"),
-    @NamedQuery(name = "Cliente.buscarPorRUC",
-            query = "SELECT o FROM Cliente o WHERE o.RUC :RUC")
+            query = "SELECT o FROM Cliente o WHERE o.apellidos = :apellidos"),
+    @NamedQuery(name = "Cliente.buscarPorruc",
+            query = "SELECT o FROM Cliente o WHERE o.ruc = :ruc")
 })
 
 public class Cliente extends Persona implements  Serializable {
     @Column(name ="")
-    private String RUC;
+    private String ruc;
     
     
     //CREANDO METODOS SET Y GET
-    public String getRUC() {
-        return RUC;
+    public String getruc() {
+        return ruc;
     }
 
-    public void setRUC(String RUC) {
-        this.RUC = RUC;
+    public void setruc(String ruc) {
+        this.ruc = ruc;
     }  
 }
