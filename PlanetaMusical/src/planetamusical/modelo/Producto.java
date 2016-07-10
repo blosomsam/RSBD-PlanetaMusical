@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -70,6 +71,14 @@ public class Producto  implements Serializable {
     
     @Column(name = "precioVenta")
     public double precioVenta;
+    
+    //Relacion con la clase DetalleVenta...De muchos a uno.
+    @ManyToOne
+    private DetalleVenta detalleVenta;
+    
+    //Relacion con la clase Compra...De muchos a uno.
+    @ManyToOne
+    private Compra compra;
 
     
     //CREANDO METODOS SET Y GET
@@ -167,5 +176,33 @@ public class Producto  implements Serializable {
 
     public void setPrecioVenta(double precioVenta) {
         this.precioVenta = precioVenta;
+    }
+
+    /**
+     * @return the detalleVenta
+     */
+    public DetalleVenta getDetalleVenta() {
+        return detalleVenta;
+    }
+
+    /**
+     * @param detalleVenta the detalleVenta to set
+     */
+    public void setDetalleVenta(DetalleVenta detalleVenta) {
+        this.detalleVenta = detalleVenta;
+    }
+
+    /**
+     * @return the compra
+     */
+    public Compra getCompra() {
+        return compra;
+    }
+
+    /**
+     * @param compra the compra to set
+     */
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
 }

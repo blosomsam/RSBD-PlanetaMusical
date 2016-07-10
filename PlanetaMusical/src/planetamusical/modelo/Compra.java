@@ -1,13 +1,19 @@
 package planetamusical.modelo;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -53,6 +59,13 @@ public class Compra implements  Serializable{
     @Column(name = "valorTotal")
     public double valorTotal;
     
+    //Relacion con la clase Producto....De UNO a MUCHOS
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "producto",cascade= CascadeType.ALL)
+    private List<Producto> producto;
+    
+    //Relacion con la clase Producto....De UNO a UNO
+    @OneToOne(mappedBy = "compra")
+    private Proveedor proveedor;
 
     //DECLARANDO LOS METODOS SET YGET 
     public long getId_compra() {
@@ -101,5 +114,33 @@ public class Compra implements  Serializable{
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    /**
+     * @return the producto
+     */
+    public List<Producto> getProducto() {
+        return producto;
+    }
+
+    /**
+     * @param producto the producto to set
+     */
+    public void setProducto(List<Producto> producto) {
+        this.producto = producto;
+    }
+
+    /**
+     * @return the proveedor
+     */
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    /**
+     * @param proveedor the proveedor to set
+     */
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
 }
