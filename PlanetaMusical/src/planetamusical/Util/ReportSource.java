@@ -1,5 +1,5 @@
 // caracteristicas principales, unficar para presentar los resultados
-package planetamusical.util;
+package planetamusical.Util;
 
 import java.util.HashMap;
 import java.util.List;

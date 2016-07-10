@@ -2,37 +2,43 @@ package planetamusical.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-//Endicamos que es una entidad de JPA
+//indicamos que es una entidad para jpa
 @Entity
-//Identificar como se va ha realcionar y crea la tabla en la base de datos
-@Table(name="Persona")
-//Mapear en un fichero de xml  de la clase en cuanquir fichero
+//indincar como se va a relacionar y crea la tabla en la base de datos
+@Table(name = "Persona")
+//mapear en un fichero xml de la clase en cualquier fichero
 @XmlRootElement
-//consultas a la base de datos SQL
+//consultar en sql
 @NamedQueries({
     @NamedQuery(name = "Persona.buscarAll",
             query = "SELECT o FROM Persona o"),
-    @NamedQuery(name = "Persona.buscarPorId",
-            query = "SELECT o FROM Persona o WHERE o.id_cuenta :id_cuenta"),
-    @NamedQuery(name = "Persona.buscarPorNombres",
-            query = "SELECT o FROM Persona o WHERE o.nombres :nombres"),
-    @NamedQuery(name = "Persona.buscarPorApellidos",
-            query = "SELECT o FROM Persona o WHERE o.apellidos :apellidos")
+    @NamedQuery(name = "persona.buscarPorId",
+            query = "SELECT o FROM Persona o WHERE o.id_persona= :id_persona"),
+    @NamedQuery(name = "persona.buscarPorNombre",
+            query = "SELECT o FROM Persona o WHERE o.nombres = :nombres"),
+    @NamedQuery(name = "persona.buscarPorCedula",
+            query = "SELECT o FROM Persona o WHERE o.cedula = :cedula")
 })
 
 public class Persona implements  Serializable{
     @Id
     @Column(name = "id_persona")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long   id_persona;
     
     @Column(name = "nombres")
@@ -41,7 +47,7 @@ public class Persona implements  Serializable{
     @Column(name = "apellidos")
     private String apellidos;
     
-    @Column(name = "cedula")
+    @Column(name = "cedula", unique = true)
     private String cedula;
     
     @Column(name = "direccion")
@@ -59,30 +65,50 @@ public class Persona implements  Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date   fechaNacimiento;
     
+    /**
+     * Agragamos las relaciones , luego del análisis del modelo de dominio y del
+     * diagrama de clases y diagrama de secuencia. 
+     * */
+    
+    //CREANDO REALACIONES 
+    //Relación con la clase cuenta
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @JoinColumn(name = "id_cuenta")
+    // obtener los metodos set y get
+    private Cuenta cuenta;
+    
     
     //CREANADO METODOS SET Y GET
-    public Long getId() {
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
+
+    public Long getId_persona() {
         return id_persona;
     }
 
-    public void setId(Long id) {
-        this.id_persona = id;
+    public void setId_persona(Long id_persona) {
+        this.id_persona = id_persona;
     }
 
-    public String getNombre() {
+    public String getNombres() {
         return nombres;
     }
 
-    public void setNombre(String nombre) {
-        this.nombres = nombre;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getApellido() {
+    public String getApellidos() {
         return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellidos = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getCedula() {

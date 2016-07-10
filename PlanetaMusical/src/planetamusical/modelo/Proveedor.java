@@ -2,6 +2,8 @@ package planetamusical.modelo;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,16 +23,17 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Proveedor.buscarAll",
             query = "SELECT o FROM Proveedor o"),
     @NamedQuery(name = "Proveedor.buscarPorId",
-            query = "SELECT o FROM Proveedor o WHERE o.id_proveedor :id_proveedor"),
+            query = "SELECT o FROM Proveedor o WHERE o.id_proveedor =:id_proveedor"),
     @NamedQuery(name = "Proveedor.buscarPorNombres",
-            query = "SELECT o FROM Proveedor o WHERE o.nombresProveedor :nombresProveedor"),
+            query = "SELECT o FROM Proveedor o WHERE o.nombresProveedor =:nombresProveedor"),
     @NamedQuery(name = "Proveedor.buscarPorApellidos",
-            query = "SELECT o FROM Proveedor o WHERE o.apellidosProveedor :apellidosProveedor")
+            query = "SELECT o FROM Proveedor o WHERE o.apellidosProveedor =:apellidosProveedor")
 })
 
 public class Proveedor {
     @Id
     @Column(name = "id_proveedor")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long   id_proveedor;
     
     @Column(name = "nombresProveedor")

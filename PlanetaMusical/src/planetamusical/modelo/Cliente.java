@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 //Endicamos que es una entidad de JPA
 @Entity
 //Identificar como se va ha realcionar y crea la tabla en la base de datos
-@Table(name="Cliente")
+@Table(name="Usuario")
 //Mapear en un fichero de xml  de la clase en cuanquir fichero
 @XmlRootElement
 //consultas a la base de datos SQL

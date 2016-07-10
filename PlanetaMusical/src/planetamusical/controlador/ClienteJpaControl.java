@@ -1,18 +1,16 @@
 package planetamusical.controlador;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Parameter;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import planetamusical.controlador.exception.NoneexistentEntityException;
-import planetamusical.modelo.Cuenta;
+import planetamusical.modelo.Persona;
 
-public class CuentaJpaControl implements Serializable{
-    public CuentaJpaControl(EntityManagerFactory emf) {
+public class ClienteJpaControl implements  Serializable {
+    public ClienteJpaControl(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
@@ -22,12 +20,12 @@ public class CuentaJpaControl implements Serializable{
         return emf.createEntityManager();
     }
 
-    public void crear(Cuenta cuenta) {
+    public void crear(Persona persona) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(cuenta);
+            em.persist(persona);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -37,22 +35,22 @@ public class CuentaJpaControl implements Serializable{
     }
 
     //METODO PARA CONSULTAR
-    public List<Cuenta> buscarCuentaEntidad() {
-        return buscarCuentaEntidad(true, -1, -1);
+    public List<Persona> buscarPersonaEntidad() {
+        return buscarPersonaEntidad(true, -1, -1);
     }
 
-    public List<Cuenta> buscarCuentaEntidad(int maxResultados,
+    public List<Persona> buscarPersonaEntidad(int maxResultados,
             int minimosResulatados) {
-        return buscarCuentaEntidad(false, maxResultados, minimosResulatados);
+        return buscarPersonaEntidad(false, maxResultados, minimosResulatados);
     }
 
-    private List<Cuenta> buscarCuentaEntidad(boolean all,
+    private List<Persona> buscarPersonaEntidad(boolean all,
             int maxResulatados, int minimosResulatados) {
         EntityManager em = getEntityManager();
 
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Cuenta.class));
+            cq.select(cq.from(Persona.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResulatados);
@@ -65,12 +63,12 @@ public class CuentaJpaControl implements Serializable{
     }
 
     //METODO ACTUALIZAR
-    public void accualizar(Cuenta cuenta) throws NoneexistentEntityException, Exception {
+    public void accualizar(Persona persona) throws NoneexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            cuenta = em.merge(cuenta);
+            persona = em.merge(persona);
             em.getTransaction().commit();
         } catch (Exception ex) {
             throw ex;
@@ -83,57 +81,40 @@ public class CuentaJpaControl implements Serializable{
     }
 
     //METODO BUSCAR POR ID
-    public Cuenta buscarCuenta(long id) {
+    public Persona buscarPersona(long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Cuenta.class, id);
+            return em.find(Persona.class, id);
         } finally {
             em.close();
         }
     }
-    
-    public Cuenta buscarCuentaUser(String user) {
+
+    //MÉTODO BUSCAR POR NOMBRES
+    public List<Persona> buscarSitioNombre(String nombrePersona) {
         EntityManager em = getEntityManager();
         boolean all = true;
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Cuenta.class));
+            cq.select(cq.from(Persona.class));
             Query q = em.createQuery(cq);
             if (!all) {
-                q.getParameterValue(user);
+                q.getParameterValue(nombrePersona);
             }
-            return (Cuenta) q.getSingleResult();
-
+            return q.getResultList();
         } finally {
             em.close();
         }
     }
 
-//    //MÉTODO BUSCAR POR FECHA
-//    public List<Cuenta> buscarCuentaId(Date fechaCuenta) {
-//        EntityManager em = getEntityManager();
-//        boolean all = true;
-//        try {
-//            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-//            cq.select(cq.from(Cuenta.class));
-//            Query q = em.createQuery(cq);
-//            if (!all) {
-//                q.getParameterValue((Parameter<Date>) fechaCuenta);
-//            }
-//            return q.getResultList();
-//        } finally {
-//            em.close();
-//        }
-//    }
-
     // METODO ELIMINAR
-    public void eliminarCuenta(Long id) {
+    public void eliminarPersona(Long id) {
         EntityManager em = null;
         try {
             em = getEntityManager();
-            Cuenta cuenta = em.find(Cuenta.class, id);
+            Persona persona = em.find(Persona.class, id);
             em.getTransaction().begin();
-            em.remove(cuenta);
+            em.remove(persona);
             em.getTransaction().commit();
         } finally {
             if (em != null) {

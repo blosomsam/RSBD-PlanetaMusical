@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -25,14 +27,15 @@ import javax.xml.bind.annotation.XmlRootElement;
    @NamedQuery(name = "Producto.buscarAll",
             query = "SELECT o FROM Producto o"),
    @NamedQuery(name = "Producto.buscarPorId",
-            query = "SELECT o FROM Producto o WHERE o.id_producto :id_producto"),
+            query = "SELECT o FROM Producto o WHERE o.id_producto =:id_producto"),
    @NamedQuery(name = "Producto.buscarPorNombre",
-            query = "SELECT o FROM Producto o WHERE o.nombreProducto :nombreProducto")
+            query = "SELECT o FROM Producto o WHERE o.nombreProducto =:nombreProducto")
 })
 
 public class Producto  implements Serializable {
     @Id
     @Column(name = "id_producto")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public Long   id_producto;
     
     @Column(name = "nombreProducto")

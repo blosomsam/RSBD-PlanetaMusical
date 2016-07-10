@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
-import planetamusical.Rol;
+import planetamusical.modelo.Rol;
 import planetamusical.controlador.exception.NoneexistentEntityException;
 
 public class RolJpaControl implements Serializable {

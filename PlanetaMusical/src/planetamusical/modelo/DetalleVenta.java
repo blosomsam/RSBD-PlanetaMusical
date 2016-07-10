@@ -3,6 +3,8 @@ package planetamusical.modelo;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,12 +23,13 @@ import javax.xml.bind.annotation.XmlRootElement;
    @NamedQuery(name = "DetalleVenta.buscarAll",
             query = "SELECT o FROM DetalleVenta o"),
    @NamedQuery(name = "DetalleVenta.buscarPorId",
-            query = "SELECT o FROM DetalleVenta o WHERE o.id_detalleVenta :id_detalleVenta")
+            query = "SELECT o FROM DetalleVenta o WHERE o.id_detalleVenta =:id_detalleVenta")
 })
 
 public class DetalleVenta  implements  Serializable {
     @Id
     @Column(name = "id_detalleVenta")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public Long   id_detalleVenta;
     
     @Column(name = "cantidadProducto")
