@@ -71,11 +71,14 @@ public class Persona implements  Serializable{
      * */
     
     //CREANDO REALACIONES 
-    //Relación con la clase cuenta
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    //Relacion con la clase Cuenta
+   @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    // union entre dos culumnas, relación con la clase id cuenta
     @JoinColumn(name = "id_cuenta")
     // obtener los metodos set y get
     private Cuenta cuenta;
+
+    
     
     
     //CREANADO METODOS SET Y GET

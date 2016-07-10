@@ -2,11 +2,13 @@ package planetamusical.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -49,12 +51,18 @@ public class Cuenta implements  Serializable{
     
     @Column(name = "estado")
     private String estado;
-
-    //REALACION UNO AUNO CON LA CLASE PERSONA 
-    @OneToOne(mappedBy = "cuenta")
-     private Persona persona;
     
-    //CREANDO METODOS SET Y GET
+    @Column(name = "tipoRol")
+    private String tipoRol;
+    
+    //#####CREANDO RELACIONES#####
+    //Relación con la clase Persona
+    @OneToOne(mappedBy = "Cuenta")
+    private Persona persona;
+    
+    
+    
+    //#####CREANDO METODOS SET Y GET#####
     public long getId_cuenta() {
         return id_cuenta;
     }
@@ -109,5 +117,13 @@ public class Cuenta implements  Serializable{
 
     public void setPersona(Persona persona) {
         this.persona = persona;
+    }
+
+    public String getTipoRol() {
+        return tipoRol;
+    }
+
+    public void setTipoRol(String tipoRol) {
+        this.tipoRol = tipoRol;
     }
 }
