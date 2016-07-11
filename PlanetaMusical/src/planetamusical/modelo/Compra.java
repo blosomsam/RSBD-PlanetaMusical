@@ -1,13 +1,18 @@
 package planetamusical.modelo;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,9 +31,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 //Consultar en SQL 
 @NamedQueries({
-   @NamedQuery(name = "Compra.buscarAll",
+   @NamedQuery(name = "compra.buscarAll",
             query = "SELECT o FROM Compra o"),
-   @NamedQuery(name = "cuenta.buscarPorId",
+   @NamedQuery(name = "compra.buscarPorId",
             query = "SELECT o FROM Compra o WHERE o.id_compra= :id_compra")
 })
 
@@ -53,8 +58,16 @@ public class Compra implements  Serializable{
     @Column(name = "valorTotal")
     public double valorTotal;
     
+    //#### CREANDO RELACIONES ###
+    //Relacion de uno a muchos con la clase producto
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "Compra",cascade= CascadeType.ALL)
+    private List<Producto> producto;
 
-    //DECLARANDO LOS METODOS SET YGET 
+    //Relacion de muchas compras con la clase Proveedor
+    @ManyToOne
+    private Proveedor proveedor;
+    
+    //#### DECLARANDO LOS METODOS SET YGET #### 
     public long getId_compra() {
         return id_compra;
     }
@@ -101,5 +114,21 @@ public class Compra implements  Serializable{
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public List<Producto> getProducto() {
+        return producto;
+    }
+
+    public void setProducto(List<Producto> producto) {
+        this.producto = producto;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
 }

@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 //consultas a la base de datos SQL
 @NamedQueries({
-    @NamedQuery(name = "Cliente.buscarAll",
+    @NamedQuery(name = "cliente.buscarAll",
             query = "SELECT o FROM Cliente o"),
     @NamedQuery(name = "Cliente.buscarPorId",
             query = "SELECT o FROM Cliente o WHERE o.id_persona = :id_persona"),
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
             query = "SELECT o FROM Cliente o WHERE o.nombres = :nombres"),
     @NamedQuery(name = "Cliente.buscarPorApellidos",
             query = "SELECT o FROM Cliente o WHERE o.apellidos = :apellidos"),
-    @NamedQuery(name = "Cliente.buscarPorruc",
+    @NamedQuery(name = "Cliente.buscarPorRuc",
             query = "SELECT o FROM Cliente o WHERE o.ruc = :ruc")
 })
 

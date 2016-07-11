@@ -8,20 +8,21 @@ import planetamusical.modelo.Cliente;
 import planetamusical.modelo.Persona;
 
 public class RegistrarClientes extends javax.swing.JInternalFrame {
-    Persona per;
-    PersonaJpaControl perjpa;
+    Cliente cli;
+    ClienteJpaControl clijpa;
     
     public RegistrarClientes() {
         initComponents();
     }
-    //  MÉTODO PARA RECIBIR OBJETO  UNA persona
-    public boolean setObjectUsuarios(Persona persona){
-        txtApellidosCliente.setText(persona.getApellidos());
-        txtRucCliente.setText(persona.getCedula());
-        txtCelularCliente.setText(persona.getTelefonoCelular());
-        txtDireccionCliente.setText(persona.getDireccion());   
-        txtEmailCliente.setText(persona.getCorreoElectronico());
-        txtNombresCliente.setText(persona.getNombres());
+    
+    //  MÉTODO PARA RECIBIR OBJETO  UNA clisona
+    public boolean setObjectUsuarios(Persona clisona){
+        txtApellidosCliente.setText(clisona.getApellidos());
+        txtRucCliente.setText(clisona.getCedula());
+        txtCelularCliente.setText(clisona.getTelefonoCelular());
+        txtDireccionCliente.setText(clisona.getDireccion());   
+        txtEmailCliente.setText(clisona.getCorreoElectronico());
+        txtNombresCliente.setText(clisona.getNombres());
         
        
         //        btnGuardar.setText("Modificar");
@@ -32,19 +33,20 @@ public class RegistrarClientes extends javax.swing.JInternalFrame {
     
     
     //METODO CARGAR DATOS EN LA BASE DE DATOS
-    public Persona cargarDatos(){
-        per = new Persona();
-        per.setApellidos(txtApellidosCliente.getText());
-        per.setCedula(txtRucCliente.getText());
-        per.setTelefonoCelular(txtCelularCliente.getText());
-        per.setDireccion(txtDireccionCliente.getText());
-        per.setCorreoElectronico(txtEmailCliente.getText());
-        per.setNombres(txtNombresCliente.getText());
+    public Cliente cargarDatos(){
+        cli = new Cliente();
+        cli.setApellidos(txtApellidosCliente.getText());
+        cli.setCedula(txtRucCliente.getText());
+        cli.setTelefonoCelular(txtCelularCliente.getText());
+        cli.setDireccion(txtDireccionCliente.getText());
+        cli.setCorreoElectronico(txtEmailCliente.getText());
+        cli.setNombres(txtNombresCliente.getText());
+        cli.setruc(txtRucCliente.getText());// añadi otra linea
 
-        perjpa = new PersonaJpaControl(JPAUtil.getEntityManagerFactory());
-        perjpa.crear(per);
+        clijpa = new ClienteJpaControl(JPAUtil.getEntityManagerFactory());
+        clijpa.crear(cli);
         
-        return per;   
+        return cli;   
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -198,9 +200,9 @@ public class RegistrarClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        per = cargarDatos();
+      cargarDatos(); // elimine cli =
         try {
-            perjpa = new PersonaJpaControl(JPAUtil.getEntityManagerFactory());
+            clijpa = new ClienteJpaControl(JPAUtil.getEntityManagerFactory());
             JOptionPane.showMessageDialog(null, "Cliente Guardado ");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error");

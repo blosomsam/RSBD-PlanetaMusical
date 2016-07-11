@@ -5,6 +5,11 @@
     <class>planetamusical.modelo.Cuenta</class>
     <class>planetamusical.modelo.Persona</class>
     <class>planetamusical.modelo.Cliente</class>
+    <class>planetamusical.modelo.Proveedor</class>
+    <class>planetamusical.modelo.Compra</class>
+    <class>planetamusical.modelo.DetalleVenta</class>
+    <class>planetamusical.modelo.Producto</class>
+    <class>planetamusical.modelo.Venta</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/PlanetaMusical?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

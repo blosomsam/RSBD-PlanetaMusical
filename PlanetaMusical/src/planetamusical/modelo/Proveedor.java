@@ -1,12 +1,16 @@
 package planetamusical.modelo;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -63,6 +67,11 @@ public class Proveedor {
     @Temporal(TemporalType.TIMESTAMP)
     private Date   FechaRegistroProveedor;
     
+    
+    //#### CREANDO RELACIONES ####
+    //Relacion de un proveedor a muchos con la clase compra
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "Proveedor",cascade= CascadeType.ALL)
+    private List<Compra> compra;
     
     // CREANDO METODOS SET Y GET
     public long getId_proveedor() {
@@ -143,5 +152,13 @@ public class Proveedor {
 
     public void setFechaRegistroProveedor(Date FechaRegistroProveedor) {
         this.FechaRegistroProveedor = FechaRegistroProveedor;
+    }
+
+    public List<Compra> getCompra() {
+        return compra;
+    }
+
+    public void setCompra(List<Compra> compra) {
+        this.compra = compra;
     }
 }
