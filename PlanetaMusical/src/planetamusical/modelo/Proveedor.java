@@ -73,7 +73,7 @@ public class Proveedor {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "Proveedor",cascade= CascadeType.ALL)
     private List<Compra> compra;
     
-    // CREANDO METODOS SET Y GET
+    // CREANDO METODOS SET Y GET    
     public long getId_proveedor() {
         return id_proveedor;
     }
