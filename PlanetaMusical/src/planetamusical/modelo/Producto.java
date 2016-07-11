@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -70,7 +71,17 @@ public class Producto  implements Serializable {
     
     @Column(name = "precioVenta")
     public double precioVenta;
-
+    
+    //#### CREANDO RELACIONES ####
+    //relacion: muchos productos a un DetalleVenta
+    
+    //Relación con la clase DetalleVenta
+    @ManyToOne
+    private DetalleVenta detalleVenta;
+    
+    //Relación con la clase Compra
+    @ManyToOne
+    private Compra compra;
     
     //CREANDO METODOS SET Y GET
     public Long getId_producto() {
@@ -167,5 +178,21 @@ public class Producto  implements Serializable {
 
     public void setPrecioVenta(double precioVenta) {
         this.precioVenta = precioVenta;
+    }
+
+    public DetalleVenta getDetalleVenta() {
+        return detalleVenta;
+    }
+
+    public void setDetalleVenta(DetalleVenta detalleVenta) {
+        this.detalleVenta = detalleVenta;
+    }
+
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        this.compra = compra;
     }
 }

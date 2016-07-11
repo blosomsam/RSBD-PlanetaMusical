@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
             query = "SELECT o FROM Cuenta o"),
     @NamedQuery(name = "cuenta.buscarPorId",
             query = "SELECT o FROM Cuenta o WHERE o.id_cuenta = :id_cuenta"),
-    @NamedQuery(name = "persona.buscarPorUsuario",
+    @NamedQuery(name = "cuenta.buscarPorUsuario",
             query = "SELECT o FROM Cuenta o WHERE o.nombreUsuario = :nombreUsuario"),
 })
 

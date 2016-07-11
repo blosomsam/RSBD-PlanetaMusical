@@ -7,6 +7,7 @@ import planetamusical.modelo.Cuenta;
 import planetamusical.modelo.Persona;
 import planetamusical.Util.JPAUtil;
 import planetamusical.vista.Autentificacion;
+import planetamusical.vista.VentanaPrincipal;
 
 public class PlanetaMusical {
 
@@ -14,13 +15,28 @@ public class PlanetaMusical {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         
-        
-        //AUTENTIFICACIÓN DE USUARIOS
+//        //AUTENTIFICACIÓN DE USUARIOS
         Autentificacion au = new Autentificacion(null,true);
         au.setVisible(true);
         
-        
+  
 //CREAR UN USUARIO ADMINISTRADOR CON CONTRASEÑA
 
 //        Cuenta cu = new Cuenta();

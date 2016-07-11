@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,18 +19,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 //indicamos que es una entidad de JPA
 @Entity
 //Identicar como se va ha llamar la tabla en la base de datos
-@Table(name="Compra")
+@Table(name="Venta")
 //Mapear en un fichero xml de la clase desde otra clase
 @XmlRootElement
 
 //consultas en base de datos SQL
 @NamedQueries({
-   @NamedQuery(name = "Venta.buscarAll",
+   @NamedQuery(name = "venta.buscarAll",
             query = "SELECT o FROM Venta o"),
    @NamedQuery(name = "venta.buscarPorId",
-            query = "SELECT o FROM Venta o WHERE o.id_venta :id_venta"),
+            query = "SELECT o FROM Venta o WHERE o.id_venta = :id_venta"),
    @NamedQuery(name = "venta.buscarPorFecha",
-            query = "SELECT o FROM Venta o WHERE o.fechaVenta :fechaVenta")
+            query = "SELECT o FROM Venta o WHERE o.fechaVenta = :fechaVenta")
 })
 
 public class Venta implements Serializable{
@@ -52,6 +54,15 @@ public class Venta implements Serializable{
     @Column(name = "total")
     private double total;
    
+    //#### CREANDO REALACIONES ####
+    //Relación con  la clase Persona 
+    @ManyToOne
+    private Persona persona;
+    
+    //Relacion con la clase DetalleVenta
+    @OneToOne(mappedBy = "Venta")
+    private DetalleVenta detalleVenta;
+    
     
     //CRENANDO METODOS DET Y GET
     public long getId_venta() {
@@ -101,4 +112,20 @@ public class Venta implements Serializable{
     public void setTotal(double total) {
         this.total = total;
     }   
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public DetalleVenta getDetalleVenta() {
+        return detalleVenta;
+    }
+
+    public void setDetalleVenta(DetalleVenta detalleVenta) {
+        this.detalleVenta = detalleVenta;
+    }
 }

@@ -2,15 +2,18 @@ package planetamusical.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -70,18 +73,19 @@ public class Persona implements  Serializable{
      * diagrama de clases y diagrama de secuencia. 
      * */
     
-    //CREANDO REALACIONES 
+    //#### CREANDO REALACIONES ####
     //Relacion con la clase Cuenta
    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     // union entre dos culumnas, relación con la clase id cuenta
     @JoinColumn(name = "id_cuenta")
     // obtener los metodos set y get
     private Cuenta cuenta;
-
+   
+   //Relacion de una persona a muchas ventas
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "Persona",cascade= CascadeType.ALL)
+    private List<Venta> venta;
     
-    
-    
-    //CREANADO METODOS SET Y GET
+    //####CREANADO METODOS SET Y GET####
     public Cuenta getCuenta() {
         return cuenta;
     }
@@ -160,5 +164,13 @@ public class Persona implements  Serializable{
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public List<Venta> getVenta() {
+        return venta;
+    }
+
+    public void setVenta(List<Venta> venta) {
+        this.venta = venta;
     }
 }
